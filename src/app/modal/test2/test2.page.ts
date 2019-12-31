@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { NavParams } from '@ionic/angular';
 import { Test3Page } from '../test3/test3.page';
 
 @Component({
@@ -9,14 +8,10 @@ import { Test3Page } from '../test3/test3.page';
   styleUrls: ['./test2.page.scss'],
 })
 export class Test2Page implements OnInit {
-  answer1: string;
 
   constructor(
     public modalController: ModalController,
-    navParams: NavParams
-    ) {
-    this.answer1 = navParams.get('answer1');
-  }
+    ) {}
 
   ngOnInit() {
   }
@@ -27,15 +22,10 @@ export class Test2Page implements OnInit {
     });
   }
 
-  async nextQuestion(answer: string) {
-    const modal = await this.modalController.create({
-      component: Test3Page,
-      componentProps: {
-        'answer1': this.answer1,
-        'answer2': answer,
-      }
+  async nextQuestion() {
+    this.modalController.dismiss({
+      'dismissed': true,
     });
-    return await modal.present();
   }
 
 }

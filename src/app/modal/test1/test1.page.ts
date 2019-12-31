@@ -20,14 +20,10 @@ export class Test1Page implements OnInit {
     });
   }
 
-  async nextQuestion(answer: string) {
-    const modal = await this.modalController.create({
-      component: Test2Page,
-      componentProps: {
-        'answer1': answer,
-      }
+  async nextQuestion() {
+    this.modalController.dismiss({
+      'dismissed': true,
     });
-    return await modal.present();
   }
 
 }
