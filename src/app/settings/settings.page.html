@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      設定
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngFor="let setting of settings">
+    <ion-card-header>
+      <ion-card-title>{{ setting.name }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>
+        相手の下のお名前のイニシャル: {{ setting.initial | uppercase }}
+      </p>
+      <p>
+        相性:
+        <span *ngIf="setting.good">
+          <ion-icon name="heart"></ion-icon>
+          <ion-icon name="heart"></ion-icon>
+          <ion-icon name="heart"></ion-icon>
+          <ion-icon name="heart"></ion-icon>
+          <ion-icon name="heart"></ion-icon>
+        </span>
+        <span *ngIf="!setting.good">
+          <ion-icon name="heart"></ion-icon>
+          <ion-icon name="heart-half"></ion-icon>
+          <ion-icon name="heart-empty"></ion-icon>
+          <ion-icon name="heart-empty"></ion-icon>
+          <ion-icon name="heart-empty"></ion-icon>
+        </span>
+      </p>
+      <ion-button color="medium" expand="block" (click)='confirmDeletion(setting.name)'>削除</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

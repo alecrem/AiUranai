@@ -38,6 +38,10 @@ const routes: Routes = [
   {
     path: 'result',
     loadChildren: () => import('./modal/result/result.module').then( m => m.ResultPageModule)
+  },
+  {
+    path: 'settings',
+    loadChildren: () => import('./settings/settings.module').then( m => m.SettingsPageModule)
   }
 ];
 

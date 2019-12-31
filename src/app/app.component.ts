@@ -19,7 +19,7 @@ export class AppComponent {
     {
       title: 'アカウント',
       url: '/account',
-      icon: 'key'
+      icon: 'lock'
     }
   ];
 
