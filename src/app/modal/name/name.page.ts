@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { Test4Page } from '../test4/test4.page';
+import { Test1Page } from '../test1/test1.page';
 
 @Component({
-  selector: 'app-test3',
-  templateUrl: './test3.page.html',
-  styleUrls: ['./test3.page.scss'],
+  selector: 'app-name',
+  templateUrl: './name.page.html',
+  styleUrls: ['./name.page.scss'],
 })
-export class Test3Page implements OnInit {
+export class NamePage implements OnInit {
+  name: string;
 
   constructor(public modalController: ModalController) {}
 
@@ -23,6 +24,7 @@ export class Test3Page implements OnInit {
   async nextQuestion() {
     this.modalController.dismiss({
       'dismissed': true,
+      'name': this.name,
     });
   }
 

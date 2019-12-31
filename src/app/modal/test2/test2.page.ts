@@ -9,9 +9,7 @@ import { Test3Page } from '../test3/test3.page';
 })
 export class Test2Page implements OnInit {
 
-  constructor(
-    public modalController: ModalController,
-    ) {}
+  constructor(public modalController: ModalController) {}
 
   ngOnInit() {
   }

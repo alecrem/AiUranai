@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { NamePage } from '../modal/name/name.page';
 import { Test1Page } from '../modal/test1/test1.page';
 import { Test2Page } from '../modal/test2/test2.page';
 import { Test3Page } from '../modal/test3/test3.page';
@@ -13,8 +14,21 @@ import { ResultPage } from '../modal/result/result.page';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  name: string;
 
   constructor(public modalController: ModalController) {}
+
+  async namePage() {
+    const modal = await this.modalController.create({
+      component: NamePage,
+    });
+    modal.onDidDismiss().then((data) => {
+      this.name = data.data.name;
+      console.log(this.name);
+      this.test1Page();
+    });
+    return await modal.present();
+  }
 
   async test1Page() {
     const modal = await this.modalController.create({
@@ -69,6 +83,9 @@ export class HomePage {
   async resultPage() {
     const modal = await this.modalController.create({
       component: ResultPage,
+      componentProps: {
+        'name': this.name,
+      },
     });
     return await modal.present();
   }

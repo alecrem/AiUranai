@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavParams } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 
 @Component({
@@ -7,10 +8,14 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./result.page.scss'],
 })
 export class ResultPage implements OnInit {
+  name: string;
 
   constructor(
+    navParams: NavParams,
     public modalController: ModalController,
-    ) {
+  ) {
+    this.name = navParams.get('name');
+    console.log("name for template", this.name);
   }
 
 
