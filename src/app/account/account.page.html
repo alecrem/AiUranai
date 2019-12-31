@@ -10,5 +10,18 @@
 </ion-header>
 
 <ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>セキュリティー</ion-card-subtitle>
+      <ion-card-title>ログインしてください</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-input [(ngModel)]="email" name="email" placeholder="メールアドレス" type="email"></ion-input>
+        <ion-input [(ngModel)]="password" name="password" placeholder="パスワード" type="password"></ion-input>
+      </ion-list>
+      <ion-button expand="block" (click)='login()'>ログイン</ion-button>
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>
