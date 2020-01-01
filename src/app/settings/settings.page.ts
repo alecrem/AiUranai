@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 import { Plugins } from '@capacitor/core';
+import { AddsettingPage } from '../modal/addsetting/addsetting.page';
 
 const { Storage } = Plugins;
 
@@ -32,14 +34,31 @@ export class SettingsPage implements OnInit {
 
   constructor(
     public alertController: AlertController,
+    public modalController: ModalController,
   ) {}
 
   async ngOnInit() {
     if (await this.settingsExist() == false) {
       this.initSettings();
     } else {
+      console.log("Settings are present on Storage");
       this.loadSettings();
     }
+  }
+
+  async addSettingModal() {
+    const modal = await this.modalController.create({
+      component: AddsettingPage,
+    });
+    modal.onDidDismiss().then((data) => {
+      this.settings.push({
+        name: (<Setting>data).name,
+        initial: (<Setting>data).initial,
+        good: (<Setting>data).good,
+      });
+      this.updateSettings();
+    });
+    return await modal.present();
   }
 
   async confirmDeletion(name: string) {
@@ -64,6 +83,7 @@ export class SettingsPage implements OnInit {
     await alert.present();
   }
   delete(name: string) {
+    console.log("filtering for", name);
     this.settings = this.settings.filter((setting) => {
       return setting.name != name;
     });
@@ -75,6 +95,7 @@ export class SettingsPage implements OnInit {
   }
   async loadSettings() {
     const ret = (await Storage.get({ key: 'settings' })).value;
+    console.log('Loading settings from Storage', JSON.stringify(ret));
     this.settings = [];
     const setts = JSON.parse(ret);
     if(setts.length > 0) {
@@ -84,12 +105,14 @@ export class SettingsPage implements OnInit {
     }
   }
   async initSettings() {
+    console.log('Initialising settings on Storage');
     await Storage.set({
       key: 'settings',
       value: JSON.stringify(settings),
     });
   }
   async updateSettings() {
+    console.log('Updating settings on Storage', JSON.stringify(this.settings));
     await Storage.set({
       key: 'settings',
       value: JSON.stringify(this.settings),

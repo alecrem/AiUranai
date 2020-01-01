@@ -16,6 +16,7 @@ import { Test3Page } from './modal/test3/test3.page';
 import { Test4Page } from './modal/test4/test4.page';
 import { Test5Page } from './modal/test5/test5.page';
 import { ResultPage } from './modal/result/result.page';
+import { AddsettingPage } from './modal/addsetting/addsetting.page';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { ResultPage } from './modal/result/result.page';
     Test4Page,
     Test5Page,
     ResultPage,
+    AddsettingPage,
   ],
   entryComponents: [
     NamePage,
@@ -36,6 +38,7 @@ import { ResultPage } from './modal/result/result.page';
     Test4Page,
     Test5Page,
     ResultPage,
+    AddsettingPage,
   ],
   imports: [
     BrowserModule,
