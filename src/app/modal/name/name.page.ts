@@ -8,7 +8,14 @@ import { Test1Page } from '../test1/test1.page';
   styleUrls: ['./name.page.scss'],
 })
 export class NamePage implements OnInit {
-  name: string;
+  name: string = '';
+
+  get submittable() {
+    if (this.name.trim().length < 1) {
+      return false;
+    }
+    return true;
+  }
 
   constructor(public modalController: ModalController) {}
 

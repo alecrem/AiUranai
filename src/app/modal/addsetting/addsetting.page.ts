@@ -13,8 +13,8 @@ export class AddsettingPage implements OnInit {
 
   get submittable() {
     if (
-      this.name.trim() == '' ||
-      this.initial.trim().length!=1
+      this.name.trim().length < 1 ||
+      this.initial.trim().length != 1
     ) {
       return false;
     }

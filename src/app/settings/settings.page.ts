@@ -71,7 +71,6 @@ export class SettingsPage implements OnInit {
         {
           text: 'キャンセル',
           role: 'cancel',
-          cssClass: 'medium',
         }, {
           text: 'OK',
           handler: () => {
