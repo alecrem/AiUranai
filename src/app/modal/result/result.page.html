@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>心理テスト</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>結果発表</ion-card-subtitle>
+      <ion-card-title>{{name}}さん専用の恋愛相性は下記の通りと推測されます</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <h2><b>T~さん</b></h2>
+      <p>
+        相手の下のお名前のイニシャル: <b>T</b>
+        <br>
+        相性:
+        <span style="color:red;">
+          <ion-icon name="heart"></ion-icon>
+          <ion-icon name="heart"></ion-icon>
+          <ion-icon name="heart"></ion-icon>
+          <ion-icon name="heart"></ion-icon>
+          <ion-icon name="heart"></ion-icon>
+        </span>
+      </p>
+      <h2><b>A~さん</b></h2>
+      <p>
+        相手の下のお名前のイニシャル: <b>A</b>
+        <br>
+        相性:
+        <span style="color:red;">
+          <ion-icon name="heart"></ion-icon>
+          <ion-icon name="heart"></ion-icon>
+          <ion-icon name="heart-half"></ion-icon>
+          <ion-icon name="heart-empty"></ion-icon>
+          <ion-icon name="heart-empty"></ion-icon>
+        </span>
+      </p>
+      <h2><b>M~さん</b></h2>
+      <p>
+        相手の下のお名前のイニシャル: <b>M</b>
+        <br>
+        相性:
+        <span style="color:red;">
+          <ion-icon name="heart-half"></ion-icon>
+          <ion-icon name="heart-empty"></ion-icon>
+          <ion-icon name="heart-empty"></ion-icon>
+          <ion-icon name="heart-empty"></ion-icon>
+          <ion-icon name="heart-empty"></ion-icon>
+        </span>
+      </p>
+      <ion-button color="medium" expand="block" (click)='dismiss()'>閉じる</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>心理テスト</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>第3/5問</ion-card-subtitle>
+      <ion-card-title>この中でもっとも好きな匂いを教えてください</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-button color="medium" (click)='nextQuestion("らっきょう")' expand="block">らっきょう</ion-button>
+      <ion-button color="medium" (click)='nextQuestion("薔薇")' expand="block">薔薇</ion-button>
+      <ion-button color="medium" (click)='nextQuestion("チーズ")' expand="block">チーズ</ion-button>
+      <ion-button color="medium" (click)='nextQuestion("ゆで卵")' expand="block">ゆで卵</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
