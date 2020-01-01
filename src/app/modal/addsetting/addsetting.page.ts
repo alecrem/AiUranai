@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-addsetting',
@@ -6,13 +7,39 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./addsetting.page.scss'],
 })
 export class AddsettingPage implements OnInit {
-  name: string;
-  initial: string;
-  good: boolean;
+  name: string = '';
+  initial: string = '';
+  good: string = 'true';
 
-  constructor() { }
+  get submittable() {
+    if (
+      this.name.trim() == '' ||
+      this.initial.trim().length!=1
+    ) {
+      return false;
+    }
+    return true;
+  }
+
+  constructor(public modalController: ModalController) {}
 
   ngOnInit() {
+  }
+
+  dismiss() {
+    this.modalController.dismiss({
+      'dismissed': true
+    });
+  }
+  save() {
+    this.modalController.dismiss({
+      'dismissed': true,
+      'data': {
+        name: this.name.trim(),
+        initial: this.initial.trim(),
+        good: this.good,
+      }
+    });
   }
 
 }

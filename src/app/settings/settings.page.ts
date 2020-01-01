@@ -51,11 +51,12 @@ export class SettingsPage implements OnInit {
       component: AddsettingPage,
     });
     modal.onDidDismiss().then((data) => {
-      this.settings.push({
-        name: (<Setting>data).name,
-        initial: (<Setting>data).initial,
-        good: (<Setting>data).good,
-      });
+      let setting: Setting = {
+        name: (<Setting>(data.data.data)).name,
+        initial: (<Setting>(data.data.data)).initial,
+        good: (data.data.data.good == "true")? true: false,
+      };
+      this.settings.push(setting);
       this.updateSettings();
     });
     return await modal.present();
