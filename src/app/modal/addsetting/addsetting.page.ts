@@ -1,17 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { Test1Page } from '../test1/test1.page';
 
 @Component({
-  selector: 'app-name',
-  templateUrl: './name.page.html',
-  styleUrls: ['./name.page.scss'],
+  selector: 'app-addsetting',
+  templateUrl: './addsetting.page.html',
+  styleUrls: ['./addsetting.page.scss'],
 })
-export class NamePage implements OnInit {
+export class AddsettingPage implements OnInit {
   name: string = '';
+  initial: string = '';
+  good: string = 'true';
 
   get submittable() {
-    if (this.name.trim().length < 1) {
+    if (
+      this.name.trim().length < 1 ||
+      this.initial.trim().length != 1
+    ) {
       return false;
     }
     return true;
@@ -27,11 +31,14 @@ export class NamePage implements OnInit {
       'dismissed': true
     });
   }
-
-  async nextQuestion() {
+  save() {
     this.modalController.dismiss({
       'dismissed': true,
-      'name': this.name,
+      'data': {
+        name: this.name.trim(),
+        initial: this.initial.trim(),
+        good: this.good,
+      }
     });
   }
 

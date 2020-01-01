@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
+import { Plugins } from '@capacitor/core';
+import { AddsettingPage } from '../modal/addsetting/addsetting.page';
+
+const { Storage } = Plugins;
 
 class Setting {
   name: string;
@@ -29,14 +34,32 @@ export class SettingsPage implements OnInit {
 
   constructor(
     public alertController: AlertController,
-  ) {
-    settings.forEach((setting) => {
-      this.settings.push(<Setting>setting);
-    });
-    console.log(this.settings);
+    public modalController: ModalController,
+  ) {}
+
+  async ngOnInit() {
+    if (await this.settingsExist() == false) {
+      this.initSettings();
+    } else {
+      console.log("Settings are present on Storage");
+      this.loadSettings();
+    }
   }
 
-  ngOnInit() {
+  async addSettingModal() {
+    const modal = await this.modalController.create({
+      component: AddsettingPage,
+    });
+    modal.onDidDismiss().then((data) => {
+      let setting: Setting = {
+        name: (<Setting>(data.data.data)).name,
+        initial: (<Setting>(data.data.data)).initial,
+        good: (data.data.data.good == "true")? true: false,
+      };
+      this.settings.push(setting);
+      this.updateSettings();
+    });
+    return await modal.present();
   }
 
   async confirmDeletion(name: string) {
@@ -48,7 +71,6 @@ export class SettingsPage implements OnInit {
         {
           text: 'キャンセル',
           role: 'cancel',
-          cssClass: 'medium',
         }, {
           text: 'OK',
           handler: () => {
@@ -64,6 +86,36 @@ export class SettingsPage implements OnInit {
     console.log("filtering for", name);
     this.settings = this.settings.filter((setting) => {
       return setting.name != name;
+    });
+    this.updateSettings();
+  }
+
+  async settingsExist() {
+    return (await Storage.get({ key: 'settings' })).value !== null;
+  }
+  async loadSettings() {
+    const ret = (await Storage.get({ key: 'settings' })).value;
+    console.log('Loading settings from Storage', JSON.stringify(ret));
+    this.settings = [];
+    const setts = JSON.parse(ret);
+    if(setts.length > 0) {
+      setts.forEach((ret) => {
+        this.settings.push(<Setting>ret);
+      });
+    }
+  }
+  async initSettings() {
+    console.log('Initialising settings on Storage');
+    await Storage.set({
+      key: 'settings',
+      value: JSON.stringify(settings),
+    });
+  }
+  async updateSettings() {
+    console.log('Updating settings on Storage', JSON.stringify(this.settings));
+    await Storage.set({
+      key: 'settings',
+      value: JSON.stringify(this.settings),
     });
   }
 

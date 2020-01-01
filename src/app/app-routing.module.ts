@@ -46,6 +46,10 @@ const routes: Routes = [
   {
     path: 'name',
     loadChildren: () => import('./modal/name/name.module').then( m => m.NamePageModule)
+  },
+  {
+    path: 'addsetting',
+    loadChildren: () => import('./modal/addsetting/addsetting.module').then( m => m.AddsettingPageModule)
   }
 ];
 

@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>設定新規登録</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)='dismiss()'><ion-icon name="close"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>設定新規登録</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-label>お名前（ひらがな）</ion-label>
+          <ion-input [(ngModel)]="name" name="name" placeholder="ひらがな"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>相手のイニシャル</ion-label>
+          <ion-input [(ngModel)]="initial" name="initial" placeholder="アルファベット1字"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-radio-group [(ngModel)]="good">
+            <ion-list-header>
+              相性
+            </ion-list-header>
+            <ion-item>
+              <ion-label>
+                <ion-icon name="heart"></ion-icon>
+                <ion-icon name="heart"></ion-icon>
+                <ion-icon name="heart"></ion-icon>
+                <ion-icon name="heart"></ion-icon>
+                <ion-icon name="heart"></ion-icon>
+                すごくいい
+              </ion-label>
+              <ion-radio value="true" checked></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                <ion-icon name="heart-half"></ion-icon>
+                <ion-icon name="heart-empty"></ion-icon>
+                <ion-icon name="heart-empty"></ion-icon>
+                <ion-icon name="heart-empty"></ion-icon>
+                <ion-icon name="heart-empty"></ion-icon>
+                すごく悪い
+              </ion-label>
+              <ion-radio value="false"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+        </ion-item>
+      </ion-list>
+      <ion-button expand="block" [disabled]="!submittable" (click)='save()'><ion-icon name="person-add"></ion-icon> 登録</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

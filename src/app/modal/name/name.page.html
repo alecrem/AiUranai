@@ -14,7 +14,7 @@
       <ion-list>
         <ion-input [(ngModel)]="name" placeholder="ひらがな" type="text"></ion-input>
       </ion-list>
-      <ion-button (click)='nextQuestion()' expand="block">次へ</ion-button>
+      <ion-button (click)='nextQuestion()' [disabled]="!submittable" expand="block">次へ</ion-button>
     </ion-card-content>
   </ion-card>
 
