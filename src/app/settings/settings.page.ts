@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
+import { Plugins } from '@capacitor/core';
+
+const { Storage } = Plugins;
 
 class Setting {
   name: string;
@@ -29,14 +32,14 @@ export class SettingsPage implements OnInit {
 
   constructor(
     public alertController: AlertController,
-  ) {
-    settings.forEach((setting) => {
-      this.settings.push(<Setting>setting);
-    });
-    console.log(this.settings);
-  }
+  ) {}
 
-  ngOnInit() {
+  async ngOnInit() {
+    if (await this.settingsExist() == false) {
+      this.initSettings();
+    } else {
+      this.loadSettings();
+    }
   }
 
   async confirmDeletion(name: string) {
@@ -61,9 +64,35 @@ export class SettingsPage implements OnInit {
     await alert.present();
   }
   delete(name: string) {
-    console.log("filtering for", name);
     this.settings = this.settings.filter((setting) => {
       return setting.name != name;
+    });
+    this.updateSettings();
+  }
+
+  async settingsExist() {
+    return (await Storage.get({ key: 'settings' })).value !== null;
+  }
+  async loadSettings() {
+    const ret = (await Storage.get({ key: 'settings' })).value;
+    this.settings = [];
+    const setts = JSON.parse(ret);
+    if(setts.length > 0) {
+      setts.forEach((ret) => {
+        this.settings.push(<Setting>ret);
+      });
+    }
+  }
+  async initSettings() {
+    await Storage.set({
+      key: 'settings',
+      value: JSON.stringify(settings),
+    });
+  }
+  async updateSettings() {
+    await Storage.set({
+      key: 'settings',
+      value: JSON.stringify(this.settings),
     });
   }
 
