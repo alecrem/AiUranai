@@ -1,6 +1,6 @@
 {
   "appId": "io.ionic.starter",
-  "appName": "AiUranai",
+  "appName": "AI占い",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",
