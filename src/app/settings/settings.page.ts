@@ -41,7 +41,6 @@ export class SettingsPage implements OnInit {
     if (await this.settingsExist() == false) {
       this.initSettings();
     } else {
-      console.log("Settings are present on Storage");
       this.loadSettings();
     }
   }
@@ -83,7 +82,6 @@ export class SettingsPage implements OnInit {
     await alert.present();
   }
   delete(name: string) {
-    console.log("filtering for", name);
     this.settings = this.settings.filter((setting) => {
       return setting.name != name;
     });
@@ -95,7 +93,6 @@ export class SettingsPage implements OnInit {
   }
   async loadSettings() {
     const ret = (await Storage.get({ key: 'settings' })).value;
-    console.log('Loading settings from Storage', JSON.stringify(ret));
     this.settings = [];
     const setts = JSON.parse(ret);
     if(setts.length > 0) {
@@ -105,14 +102,12 @@ export class SettingsPage implements OnInit {
     }
   }
   async initSettings() {
-    console.log('Initialising settings on Storage');
     await Storage.set({
       key: 'settings',
       value: JSON.stringify(settings),
     });
   }
   async updateSettings() {
-    console.log('Updating settings on Storage', JSON.stringify(this.settings));
     await Storage.set({
       key: 'settings',
       value: JSON.stringify(this.settings),

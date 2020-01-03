@@ -24,7 +24,6 @@ export class HomePage {
     });
     modal.onDidDismiss().then((data) => {
       this.name = data.data.name;
-      console.log(this.name);
       this.test1Page();
     });
     return await modal.present();

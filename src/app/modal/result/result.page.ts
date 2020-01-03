@@ -34,7 +34,6 @@ export class ResultPage implements OnInit {
     public modalController: ModalController,
   ) {
     this.name = navParams.get('name').trim();
-    console.log("name for template", this.name);
   }
 
 

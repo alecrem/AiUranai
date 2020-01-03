@@ -26,7 +26,6 @@ export class AccountPage implements OnInit {
 
   async login() {
     if(this.email == credentials.email && this.password == credentials.password) {
-      console.log("ログイン成功");
       this.router.navigate(['/settings']);
     } else {
       this.email = '';
