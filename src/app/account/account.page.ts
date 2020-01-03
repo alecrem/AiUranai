@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 
 const credentials = {
-  email: "karen",
-  password: "kaijo",
+  email: "email",
+  password: "password",
 }
 
 @Component({
