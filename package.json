@@ -1,8 +1,8 @@
 {
-  "name": "AiUranai",
-  "version": "0.0.1",
+  "name": "AI占い",
+  "version": "1.0.0",
   "author": "Alejandro Cremades",
-  "homepage": "https://github.com/alecrem",
+  "homepage": "https://github.com/alecrem/AiUranai",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -57,5 +57,5 @@
     "tslint": "~5.15.0",
     "typescript": "~3.4.3"
   },
-  "description": "An Ionic project"
+  "description": "Weekend project joke fortune app for a friend of mine to troll other girls"
 }

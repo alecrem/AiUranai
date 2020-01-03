@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 
 const credentials = {
-  email: "karen",
-  password: "kaijo",
+  email: "email",
+  password: "password",
 }
 
 @Component({
@@ -26,7 +26,6 @@ export class AccountPage implements OnInit {
 
   async login() {
     if(this.email == credentials.email && this.password == credentials.password) {
-      console.log("ログイン成功");
       this.router.navigate(['/settings']);
     } else {
       this.email = '';
